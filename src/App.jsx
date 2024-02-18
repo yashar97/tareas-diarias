@@ -137,7 +137,7 @@ const App = () => {
                                 <ul>
                                     {
                                         tareas.map(element => (
-                                            <li onClick={() => completar(element.id)} key={element.id} className={`${element.completado && 'bg-green-600'} flex justify-between items-center p-4 mb-4 rounded-lg shadow-md bg-white hover:bg-gray-300 transition-transform hover:scale-x-105 cursor-pointer`}>
+                                            <li onClick={() => completar(element.id)} key={element.id} className={`flex justify-between items-center p-4 mb-4 rounded-lg shadow-m hover:bg-gray-300 transition-transform hover:scale-x-105 cursor-pointer ${element.completado ? 'bg-green-600' : 'bg-white'}`}>
                                                 <span className="flex-1">{element.nombre}</span>
                                                 <div className='flex gap-2'>
                                                     <button onClick={(e) => eliminarTarea(e, element.id)} className="text-red-500 hover:text-red-700">Eliminar</button>
