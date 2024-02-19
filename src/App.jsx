@@ -133,7 +133,7 @@ const App = () => {
                     {
                         tareas.length ? (
                             <div className="bg-gray-200 rounded-lg shadow-lg p-6">
-                                <h2 className="text-xl font-bold mb-4">Tareas</h2>
+                                <h2 className="text-xl text-center font-bold mb-4">Tareas</h2>
                                 <ul>
                                     {
                                         tareas.map(element => (
