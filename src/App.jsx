@@ -57,7 +57,7 @@ const App = () => {
 
         tarea.id = Date.now();
 
-        tareas.push(tarea);
+        tareas.unshift(tarea);
 
         setTareas(tareas);
 
