@@ -50,7 +50,8 @@ const App = () => {
 
         if (tarea.nombre.trim() === '') {
             Swal.fire({
-                title: "Ingresa una tarea",
+                title: "Error",
+                text:'El nombre de la tarea es obligatorio',
                 icon: "error"
             });
             return;
