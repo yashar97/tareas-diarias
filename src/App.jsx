@@ -15,26 +15,18 @@ const App = () => {
 
     useEffect(() => {
 
-        const posiblesTareas = JSON.parse(localStorage.getItem('tareas'));
-
-        if (posiblesTareas) {
-            return;
-        } else {
-            localStorage.setItem('tareas', JSON.stringify(tareas));
-        }
+        const tareasLS = JSON.parse(localStorage.getItem('tareas')) ?? [];
 
 
-
+        setTareas(tareasLS);
 
     }, []);
 
     useEffect(() => {
 
-        const datos = JSON.parse(localStorage.getItem('tareas'));
+        localStorage.setItem('tareas', JSON.stringify(tareas));
 
-        setTareas(datos);
-
-    }, []);
+    }, [tareas]);
 
 
 
@@ -51,23 +43,18 @@ const App = () => {
         if (tarea.nombre.trim() === '') {
             Swal.fire({
                 title: "Error",
-                text:'El nombre de la tarea es obligatorio',
+                text: 'El nombre de la tarea es obligatorio',
                 icon: "error"
             });
             return;
         }
 
 
-        const tareas = JSON.parse(localStorage.getItem('tareas'));
-
         tarea.id = Date.now();
 
-        tareas.push(tarea);
+        setTareas([...tareas, tarea]);
 
-        setTareas(tareas);
-
-        localStorage.setItem('tareas', JSON.stringify(tareas));
-
+    
         setTarea({
             nombre: '',
             id: '',
@@ -79,18 +66,16 @@ const App = () => {
     const eliminarTarea = (e, id) => {
         e.stopPropagation();
 
-        const tareas = JSON.parse(localStorage.getItem('tareas'));
-
+    
         const tareasActualizadas = tareas.filter(element => element.id !== id);
 
-        localStorage.setItem('tareas', JSON.stringify(tareasActualizadas));
-
+    
         setTareas(tareasActualizadas);
     }
 
     const completar = id => {
         const tareas = JSON.parse(localStorage.getItem('tareas'));
-
+        
         const tareasActualizadas = tareas.map(element => {
             if (element.id === id) {
                 if (element.completado) {
@@ -102,10 +87,6 @@ const App = () => {
 
             return element;
         });
-
-
-        localStorage.setItem('tareas', JSON.stringify(tareasActualizadas));
-
 
 
         setTareas(tareasActualizadas);
