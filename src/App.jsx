@@ -52,9 +52,9 @@ const App = () => {
 
         tarea.id = Date.now();
 
-        setTareas([...tareas, tarea]);
+        setTareas([tarea, ...tareas]);
 
-    
+
         setTarea({
             nombre: '',
             id: '',
@@ -66,16 +66,16 @@ const App = () => {
     const eliminarTarea = (e, id) => {
         e.stopPropagation();
 
-    
+
         const tareasActualizadas = tareas.filter(element => element.id !== id);
 
-    
+
         setTareas(tareasActualizadas);
     }
 
     const completar = id => {
         const tareas = JSON.parse(localStorage.getItem('tareas'));
-        
+
         const tareasActualizadas = tareas.map(element => {
             if (element.id === id) {
                 if (element.completado) {
